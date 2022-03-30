@@ -5,15 +5,13 @@ from django.urls import include, path
 from .views import PostViewSet, CommentViewSet, GroupViewSet
 
 router_v1 = SimpleRouter()
-router_v1.register("api/v1/posts", PostViewSet)
+router_v1.register(r"posts", PostViewSet, basename="posts")
+router_v1.register(r"groups", GroupViewSet, basename="groups")
 router_v1.register(
-    r"api/v1/posts/(?P<post_id>\d+)/comments",
-    CommentViewSet,
-    basename="comment",
+    r"posts/(?P<post_id>\d+)/comments", CommentViewSet, basename="comment"
 )
-router_v1.register("api/v1/groups", GroupViewSet)
 
 urlpatterns = [
-    path("", include(router_v1.urls)),
-    path("api/v1/api-token-auth/", views.obtain_auth_token),
+    path("v1/", include(router_v1.urls)),
+    path("v1/api-token-auth/", views.obtain_auth_token),
 ]
