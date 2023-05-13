@@ -27,5 +27,8 @@ pip install -r requirements.txt
 ```
 python manage.py runserver
 
-#### Автор:
+```
+
+
+### Автор:
 Стрельников А.С.
